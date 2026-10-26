@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator BEP Layering</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator BEP Layering/Averaging</h1>
+        
+        <div class="card">
+            <h2>Pengaturan Dasar</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Tipe Posisi</label>
+                    <select id="posType">
+                        <option value="buy">BUY</option>
+                        <option value="sell">SELL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nilai 1 Poin per Lot (USD)</label>
+                    <input type="number" id="pointValue" value="100" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Spread (Poin)</label>
+                    <input type="number" id="spread" value="20">
+                </div>
+                <div class="form-group">
+                    <label>Fee/Komisi per Lot (USD)</label>
+                    <input type="number" id="feePerLot" value="5">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Tambah Posisi Layer</h2>
+            
+            <label class="section-label">Opsi 1: Tambah Manual</label>
+            <div class="input-row">
+                <input type="number" id="manualPrice" placeholder="Harga (Poin)">
+                <input type="number" id="manualLot" placeholder="Jumlah Lot">
+                <button class="btn-primary" onclick="addLayerManual()">Tambah Manual</button>
+            </div>
+            
+            <label class="section-label">Opsi 2: Tambah via Jarak (Otomatis dari order terakhir)</label>
+            <div class="input-row">
+                <input type="number" id="distancePoint" placeholder="Jarak (Poin)">
+                <input type="number" id="distanceLot" placeholder="Jumlah Lot">
+                <button class="btn-secondary" onclick="addLayerDistance()">Tambah via Jarak</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Daftar Posisi</h2>
+            <div class="table-responsive">
+                <table id="layerTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Harga Entry</th>
+                            <th>Ukuran Lot</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="layerBody">
+                        <!-- Data masuk ke sini dari JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card result-card">
+            <h2>Kalkulasi BEP (Bersih)</h2>
+            <div id="resultText" class="result-content">Belum ada posisi yang di-input.</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
